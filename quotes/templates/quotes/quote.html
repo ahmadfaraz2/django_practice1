@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+Quote Request
+{% endblock title %}
+
+{% block sidenav %}
+{% for page in page_list %}
+<p>
+    <li><a href="{{ page.permalink }}">{{page.title}}</a></li>
+</p>
+{% endfor %}
+{% endblock sidenav %}
+
+{% block content %}
+<h1>Quote Request</h1>
+
+{% if submitted %}
+<p>
+    Your quote was submitted successfully. Thank You.
+</p>
+
+{% else %}
+<form action=" " enctype="multipart/form-data" method="post" novalidate>
+    <table>
+        {{form.as_table}}
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+    {% csrf_token %}
+</form>
+{% endif %}
+{% endblock content %}
